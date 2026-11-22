@@ -1,1 +1,1087 @@
 
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Smart QR Code Generator and Scanner with customization, batch generation and history management.">
+
+    <title>Smart QR | QR Management Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Mobile overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ==================================
+             SIDEBAR
+        =================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">
+                    <i data-lucide="qr-code"></i>
+                </div>
+
+                <div>
+                    <h2>Smart QR</h2>
+                    <span>QR Management Platform</span>
+                </div>
+
+                <button class="sidebar-close" id="sidebarClose"
+                    aria-label="Close navigation">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+
+            <div class="sidebar-content">
+
+                <p class="nav-heading">WORKSPACE</p>
+
+                <nav class="sidebar-nav" aria-label="Main navigation">
+
+                    <button class="nav-link active" data-section="home">
+                        <i data-lucide="layout-dashboard"></i>
+                        <span>Home</span>
+                    </button>
+
+                    <button class="nav-link" data-section="generate">
+                        <i data-lucide="qr-code"></i>
+                        <span>Generate QR</span>
+                    </button>
+
+                    <button class="nav-link" data-section="scanner">
+                        <i data-lucide="scan-line"></i>
+                        <span>Scanner</span>
+                    </button>
+
+                    <button class="nav-link" data-section="batch">
+                        <i data-lucide="layers"></i>
+                        <span>Batch Generator</span>
+                    </button>
+
+                    <button class="nav-link" data-section="history">
+                        <i data-lucide="history"></i>
+                        <span>History</span>
+                    </button>
+
+                    <p class="nav-heading secondary-heading">GENERAL</p>
+
+                    <button class="nav-link" data-section="about">
+                        <i data-lucide="info"></i>
+                        <span>About</span>
+                    </button>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Sidebar bottom -->
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-help">
+                    <div class="help-icon">
+                        <i data-lucide="circle-help"></i>
+                    </div>
+
+                    <h4>Need assistance?</h4>
+                    <p>Explore the features of Smart QR.</p>
+
+                    <button class="help-link" data-section="about">
+                        Learn More <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-version">
+                    <span>Smart QR</span>
+                    <span>Version 1.0</span>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ==================================
+             MAIN APPLICATION
+        =================================== -->
+
+        <main class="main-content">
+
+            <!-- Top Navigation -->
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="icon-button menu-toggle" id="menuToggle"
+                        aria-label="Open navigation">
+                        <i data-lucide="menu"></i>
+                    </button>
+
+                    <div class="page-heading">
+                        <span class="breadcrumb">Workspace / <span id="breadcrumbPage">Home</span></span>
+                        <h1 id="pageTitle">Dashboard</h1>
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="system-status">
+                        <span class="status-dot"></span>
+                        <span>System Ready</span>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button class="icon-button theme-toggle" id="themeToggle"
+                        aria-label="Switch to dark theme"
+                        title="Toggle dark/light mode">
+                        <i data-lucide="moon" id="themeIcon"></i>
+                    </button>
+
+                    <div class="user-profile">
+                        <div class="avatar">U</div>
+
+                        <div class="user-info">
+                            <strong>Project User</strong>
+                            <span>Administrator</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ==================================
+                 PAGE CONTENT
+            =================================== -->
+
+            <div class="page-container">
+
+
+                <!-- ==================================
+                     SECTION 1: HOME
+                =================================== -->
+
+                <section class="page-section active" id="home">
+
+                    <div class="welcome-banner">
+
+                        <div class="welcome-content">
+                            <span class="eyebrow">SMART QR WORKSPACE</span>
+
+                            <h2>Welcome to Smart QR! 👋</h2>
+
+                            <p>
+                                Generate, scan, customize and manage
+                                your QR codes with ease.
+                            </p>
+
+                            <button class="btn btn-light"
+                                data-section="generate">
+                                Create QR Code
+                                <i data-lucide="arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="welcome-art">
+                            <i data-lucide="qr-code"></i>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Statistics -->
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Total Generated</span>
+                                <div class="stat-icon blue">
+                                    <i data-lucide="qr-code"></i>
+                                </div>
+                            </div>
+
+                            <h3 id="dashboardGeneratedCount">0</h3>
+                            <p>Generated QR codes</p>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Total Scanned</span>
+                                <div class="stat-icon green">
+                                    <i data-lucide="scan"></i>
+                                </div>
+                            </div>
+
+                            <h3 id="dashboardScannedCount">0</h3>
+                            <p>Scanned QR codes</p>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Saved History</span>
+                                <div class="stat-icon purple">
+                                    <i data-lucide="bookmark"></i>
+                                </div>
+                            </div>
+
+                            <h3 id="dashboardSavedCount">0</h3>
+                            <p>Saved records</p>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Batch Created</span>
+                                <div class="stat-icon orange">
+                                    <i data-lucide="layers"></i>
+                                </div>
+                            </div>
+
+                            <h3 id="dashboardBatchCount">0</h3>
+                            <p>Batch runs</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Quick Actions -->
+                    <div class="section-heading">
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <p>Access your favourite tools.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="quick-grid">
+
+                        <button class="quick-card" data-section="generate">
+                            <div class="quick-icon blue">
+                                <i data-lucide="qr-code"></i>
+                            </div>
+                            <h3>Generate QR</h3>
+                            <p>Create a new QR code</p>
+                            <i data-lucide="arrow-up-right" class="quick-arrow"></i>
+                        </button>
+
+
+                        <button class="quick-card" data-section="scanner">
+                            <div class="quick-icon green">
+                                <i data-lucide="scan-line"></i>
+                            </div>
+                            <h3>Scan QR</h3>
+                            <p>Read an existing QR code</p>
+                            <i data-lucide="arrow-up-right" class="quick-arrow"></i>
+                        </button>
+
+
+                        <button class="quick-card" data-section="batch">
+                            <div class="quick-icon purple">
+                                <i data-lucide="layers"></i>
+                            </div>
+                            <h3>Batch Generator</h3>
+                            <p>Create multiple QR codes</p>
+                            <i data-lucide="arrow-up-right" class="quick-arrow"></i>
+                        </button>
+
+
+                        <button class="quick-card" data-section="history">
+                            <div class="quick-icon orange">
+                                <i data-lucide="history"></i>
+                            </div>
+                            <h3>View History</h3>
+                            <p>Manage previous activities</p>
+                            <i data-lucide="arrow-up-right" class="quick-arrow"></i>
+                        </button>
+
+                    </div>
+
+
+                    <!-- Recent Activity -->
+                    <div class="section-heading activity-heading">
+                        <div>
+                            <h2>Recent Activity</h2>
+                            <p>Your latest QR activities.</p>
+                        </div>
+
+                        <button class="text-link" data-section="history">
+                            View All <i data-lucide="arrow-right"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="activity-list" id="recentActivityList" hidden></div>
+
+                    <div class="empty-state" id="recentActivityEmpty">
+                        <div class="empty-icon">
+                            <i data-lucide="clock"></i>
+                        </div>
+
+                        <h3>No recent activity</h3>
+
+                        <p>
+                            Your QR generation and scanning activities
+                            will appear here.
+                        </p>
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     SECTION 2: GENERATE QR
+                =================================== -->
+
+                <section class="page-section" id="generate">
+
+                    <div class="section-intro">
+                        <div>
+                            <span class="eyebrow">QR TOOLS</span>
+                            <h2>QR Code Generator</h2>
+                            <p>Create and customize your QR codes.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="generator-layout">
+
+                        <!-- Input Panel -->
+                        <div class="panel input-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>QR Content</h3>
+                                    <p>Enter the information for your QR code.</p>
+                                </div>
+
+                                <span class="step-badge">01</span>
+                            </div>
+
+
+                            <label class="field-label" for="qrType">Content Type</label>
+
+                            <div class="form-group">
+                                <select id="qrType">
+                                    <option value="url">Website URL</option>
+                                    <option value="text">Plain Text</option>
+                                    <option value="email">Email Address</option>
+                                    <option value="phone">Phone Number</option>
+                                    <option value="wifi">Wi-Fi Credentials</option>
+                                    <option value="vcard">Contact Information (vCard)</option>
+                                </select>
+                            </div>
+
+                        <div id="dynamicFields"></div>
+
+
+                            <div class="form-group">
+                                <label for="qrFileName">QR Code Name</label>
+
+                                <input type="text"
+                                    id="qrFileName"
+                                    placeholder="My QR Code">
+                            </div>
+
+
+                            <div class="form-actions">
+                                <button class="btn btn-outline" type="button"
+                                    id="clearGenerator">
+                                    <i data-lucide="rotate-ccw"></i>
+                                    Clear
+                                </button>
+
+                                <button class="btn btn-primary" type="button"
+                                    id="generateButton">
+                                    <i data-lucide="qr-code"></i>
+                                    Generate QR
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                        <!-- QR Preview Panel -->
+                        <div class="panel preview-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>QR Preview</h3>
+                                    <p>Your QR code will appear here.</p>
+                                </div>
+
+                                <span class="step-badge">02</span>
+                            </div>
+
+
+                            <div class="qr-preview-box">
+
+                                <div class="qr-placeholder" id="qrPlaceholder">
+                                    <i data-lucide="qr-code"></i>
+                                </div>
+
+                                <div id="qrCodeOutput"></div>
+
+                                <h4 id="qrPreviewTitle">
+                                    QR Preview Area
+                                </h4>
+
+                                <p id="qrPreviewMessage">
+                                    Enter your content and generate a QR code to see the preview here.
+                                </p>
+
+                            </div>
+
+
+                            <div class="preview-actions">
+
+                                <button class="btn btn-outline" type="button" id="downloadPng" disabled>
+                                    <i data-lucide="download"></i>
+                                    Download PNG
+                                </button>
+
+                                <button class="btn btn-outline" type="button" id="downloadJpg" disabled>
+                                    <i data-lucide="download"></i>
+                                    Download JPG
+                                </button>
+
+                                <button class="btn btn-outline" type="button" id="downloadSvg" disabled>
+                                    <i data-lucide="download"></i>
+                                    Download SVG
+                                </button>
+
+                                <button class="btn btn-outline" type="button" id="copyQrContent" disabled>
+                                    <i data-lucide="copy"></i>
+                                    Copy
+                                </button>
+
+                                <button class="btn btn-outline" type="button" id="printQr" disabled>
+                                    <i data-lucide="printer"></i>
+                                    Print
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Customization -->
+                    <div class="panel customization-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Customize Your QR Code</h3>
+                                <p>Personalize the appearance of your QR code.</p>
+                            </div>
+
+                            <div class="customize-icon">
+                                <i data-lucide="palette"></i>
+                            </div>
+                        </div>
+
+
+                        <div class="customization-grid">
+
+                            <div class="form-group">
+                                <label for="foregroundColor">Foreground Color</label>
+
+                                <div class="color-input">
+                                    <input type="color"
+                                        id="foregroundColor"
+                                        value="#172554">
+
+                                    <span>#172554</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="backgroundColor">Background Color</label>
+
+                                <div class="color-input">
+                                    <input type="color"
+                                        id="backgroundColor"
+                                        value="#ffffff">
+
+                                    <span>#FFFFFF</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="qrSize">QR Code Size</label>
+
+                                <select id="qrSize">
+                                    <option value="128">Small (128px)</option>
+                                    <option value="256" selected>Medium (256px)</option>
+                                    <option value="512">Large (512px)</option>
+                                    <option value="1024">Extra Large (1024px)</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="qrMargin">QR Margin</label>
+
+                                <select id="qrMargin">
+                                    <option value="4">Small</option>
+                                    <option value="12" selected>Medium</option>
+                                    <option value="24">Large</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="qrError">Error Correction Level</label>
+
+                                <select id="qrError">
+                                    <option value="L">L - Low (7%)</option>
+                                    <option value="M" selected>M - Medium (15%)</option>
+                                    <option value="Q">Q - Quartile (25%)</option>
+                                    <option value="H">H - High (30%)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="qrLogo">Upload QR Code Logo</label>
+
+                                <input
+                                    type="file"
+                                    id="qrLogo"
+                                    accept="image/png,image/jpeg,image/webp">
+
+                                <span class="field-hint">
+                                    PNG, JPG or WebP, up to 1 MB. Logo uses high error correction (H).
+                                </span>
+
+                                <div id="logoPreview"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="customization-footer">
+                            <button
+                                class="btn btn-outline"
+                                type="button"
+                                id="resetCustomization">
+
+                                <i data-lucide="rotate-ccw"></i>
+                                Reset Customization
+
+                            </button>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     SECTION 3: SCANNER
+                =================================== -->
+
+                <section class="page-section" id="scanner">
+
+                    <div class="section-intro">
+                        <span class="eyebrow">QR TOOLS</span>
+                        <h2>QR Code Scanner</h2>
+                        <p>Scan QR codes through a camera or upload an image.</p>
+                    </div>
+
+
+                    <div class="scanner-layout">
+
+                        <div class="panel scanner-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Scan QR Code</h3>
+                                    <p>Choose your preferred scanning method.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="scanner-tabs">
+
+                                <button class="scanner-tab active" type="button" id="scannerCameraTab" aria-selected="true">
+                                    <i data-lucide="camera"></i>
+                                    Camera
+                                </button>
+
+                                <button class="scanner-tab" type="button" id="scannerUploadTab" aria-selected="false">
+                                    <i data-lucide="image"></i>
+                                    Upload Image
+                                </button>
+
+                            </div>
+
+
+                            <div class="camera-placeholder" id="cameraPlaceholder">
+
+                                <div class="camera-icon">
+                                    <i data-lucide="scan-line"></i>
+                                </div>
+
+                                <h3>Camera Preview</h3>
+
+                                <p>
+                                    Start scanning to request camera access and read a QR code.
+                                </p>
+
+                                <div class="form-group scanner-camera-select" id="scannerCameraControls" hidden>
+                                    <label for="scannerCameraSelect">Camera</label>
+                                    <select id="scannerCameraSelect" disabled></select>
+                                </div>
+
+                                <div id="qrScannerReader" class="qr-scanner-reader"></div>
+
+                                <p id="scannerStatus" role="status" aria-live="polite">
+                                    Camera is idle. Select Start Scanning to begin.
+                                </p>
+
+                                <div class="scanner-camera-actions">
+                                    <button class="btn btn-primary" type="button" id="startScanButton">
+                                        <i data-lucide="camera"></i>
+                                        Start Scanning
+                                    </button>
+                                    <button class="btn btn-outline" type="button" id="stopScanButton" disabled>
+                                        <i data-lucide="square"></i>
+                                        Stop Scanning
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="upload-box" id="scannerUploadPanel" hidden>
+
+                                <i data-lucide="cloud-upload"></i>
+
+                                <h4>Upload QR Image</h4>
+
+                                <p>Drag and drop an image here or browse files.</p>
+
+                                <label class="btn btn-outline" for="scannerFile">
+                                    Browse Image
+                                </label>
+
+                                <input type="file" id="scannerFile"
+                                    accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" hidden>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="panel scan-result-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Scan Result</h3>
+                                    <p>Decoded information will appear here.</p>
+                                </div>
+                            </div>
+
+                            <div class="empty-state compact-empty" id="scanResultEmpty">
+                                <div class="empty-icon">
+                                    <i data-lucide="file-search"></i>
+                                </div>
+
+                                <h3>No QR code scanned</h3>
+
+                                <p>
+                                    Scan a QR code to display its
+                                    decoded content here.
+                                </p>
+                            </div>
+
+                            <div class="scan-result-content" id="scanResultContent" hidden>
+                                <pre class="scan-result-text" id="scanResultText"></pre>
+                                <div class="preview-actions">
+                                    <button class="btn btn-outline" type="button" id="copyScanResult" disabled>
+                                        <i data-lucide="copy"></i>
+                                        Copy Result
+                                    </button>
+                                    <button class="btn btn-primary" type="button" id="openScannedLink" hidden>
+                                        <i data-lucide="external-link"></i>
+                                        Open Link
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     SECTION 4: BATCH GENERATOR
+                =================================== -->
+
+                <section class="page-section" id="batch">
+
+                    <div class="section-intro">
+                        <span class="eyebrow">BULK TOOLS</span>
+                        <h2>Batch QR Generator</h2>
+                        <p>Prepare multiple QR codes from a single list or file.</p>
+                    </div>
+
+
+                    <div class="panel batch-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Batch Input</h3>
+                                <p>Enter one URL or text entry on each line.</p>
+                            </div>
+
+                            <span class="step-badge">01</span>
+                        </div>
+
+
+                        <div class="batch-upload">
+
+                            <i data-lucide="file-spreadsheet"></i>
+
+                            <h3>Drop your CSV file here</h3>
+
+                            <p>Or select a file from your device.</p>
+
+                            <label for="batchFile" class="btn btn-primary">
+                                <i data-lucide="upload"></i>
+                                Choose CSV File
+                            </label>
+
+                            <input type="file" id="batchFile"
+                                accept=".csv" hidden>
+
+                            <span class="field-hint">
+                                CSV files with one entry per row, up to 2 MB. You can also paste a multiline list below.
+                            </span>
+
+                        </div>
+
+
+                        <div class="batch-manual">
+
+                            <div class="section-heading">
+                                <div>
+                                    <h3>Or Enter Data Manually</h3>
+                                    <p>Add multiple QR code entries.</p>
+                                </div>
+                            </div>
+
+                            <textarea id="batchContent"
+                                rows="5"
+                                placeholder="https://example.com&#10;A text entry for a QR code&#10;https://example.org"></textarea>
+
+                            <div class="batch-footer">
+
+                                <span class="field-hint">
+                                    Each non-empty line becomes one QR code (up to 250 entries per batch).
+                                </span>
+
+                                <div class="batch-actions">
+                                    <button class="btn btn-outline" type="button" id="batchClearButton">
+                                        <i data-lucide="trash-2"></i>
+                                        Clear All
+                                    </button>
+
+                                    <button class="btn btn-primary" type="button"
+                                        id="batchGenerateButton">
+                                        <i data-lucide="layers"></i>
+                                        Generate All QR Codes
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel batch-results">
+
+                        <div class="batch-results-toolbar">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Batch Results</h3>
+                                    <p id="batchStatus">Your generated QR collection will appear here.</p>
+                                </div>
+                            </div>
+                            <div class="batch-result-actions">
+                                <strong><span id="batchSuccessCount">0</span> generated</strong>
+                                <button class="btn btn-outline" type="button" id="batchDownloadZip" disabled>
+                                    <i data-lucide="archive"></i>
+                                    Download All as ZIP
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="batchErrors" class="batch-errors" role="alert" hidden></div>
+
+                        <div class="empty-state compact-empty" id="batchEmptyState">
+                            <div class="empty-icon">
+                                <i data-lucide="package-open"></i>
+                            </div>
+
+                            <h3>No batch generated</h3>
+                            <p>Enter one URL or text entry per line, then generate your batch.</p>
+                        </div>
+
+                        <div class="batch-results-grid" id="batchResultsGrid"></div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     SECTION 5: HISTORY
+                =================================== -->
+
+                <section class="page-section" id="history">
+
+                    <div class="section-intro">
+                        <span class="eyebrow">ACTIVITY MANAGEMENT</span>
+                        <h2>QR Code History</h2>
+                        <p>View and manage your previous QR activities.</p>
+                    </div>
+
+
+                    <div class="history-stats">
+
+                        <div class="history-stat">
+                            <span>Total Records</span>
+                            <strong id="historyTotalCount">0</strong>
+                        </div>
+
+                        <div class="history-stat">
+                            <span>Generated</span>
+                            <strong id="historyGeneratedCount">0</strong>
+                        </div>
+
+                        <div class="history-stat">
+                            <span>Scanned</span>
+                            <strong id="historyScannedCount">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel history-panel">
+
+                        <div class="history-toolbar">
+
+                            <div>
+                                <h3>Activity Records</h3>
+                                <p>Your saved QR code history.</p>
+                            </div>
+
+                            <button class="btn btn-outline" type="button" id="clearAllHistory">
+                                <i data-lucide="trash-2"></i>
+                                Clear All History
+                            </button>
+
+                            <div class="history-controls">
+
+                                <div class="search-box">
+                                    <i data-lucide="search"></i>
+                                    <input type="search"
+                                        id="historySearch"
+                                        placeholder="Search records...">
+                                </div>
+
+                                <select id="historyFilter">
+                                    <option value="all">All Activities</option>
+                                    <option value="generated">Generated</option>
+                                    <option value="scanned">Scanned</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="table-responsive">
+
+                            <table class="history-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>QR NAME</th>
+                                        <th>TYPE</th>
+                                        <th>CONTENT</th>
+                                        <th>DATE</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="historyTableBody">
+
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="table-empty">
+                                                <i data-lucide="inbox"></i>
+                                                <strong>No records found</strong>
+                                                <span>Your QR history will appear here.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================
+                     SECTION 6: ABOUT
+                =================================== -->
+
+                <section class="page-section" id="about">
+
+                    <div class="about-hero">
+
+                        <div class="about-logo">
+                            <i data-lucide="qr-code"></i>
+                        </div>
+
+                        <span class="eyebrow">ABOUT THE PROJECT</span>
+
+                        <h2>Smart QR Code Generator & Scanner</h2>
+
+                        <p>
+                            A web-based platform designed to simplify
+                            QR code generation, scanning, customization
+                            and management.
+                        </p>
+
+                        <span class="version-tag">Version 1.0</span>
+
+                    </div>
+
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Platform Features</h2>
+                            <p>Explore the capabilities of Smart QR.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="about-features">
+
+                        <div class="about-card">
+                            <i data-lucide="qr-code"></i>
+                            <h3>QR Generation</h3>
+                            <p>Create QR codes for different types of content.</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i data-lucide="scan-line"></i>
+                            <h3>QR Scanning</h3>
+                            <p>Read QR codes using camera or image uploads.</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i data-lucide="palette"></i>
+                            <h3>Customization</h3>
+                            <p>Personalize QR code colors and dimensions.</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i data-lucide="history"></i>
+                            <h3>History</h3>
+                            <p>Keep track of generated and scanned records.</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i data-lucide="layers"></i>
+                            <h3>Batch Generation</h3>
+                            <p>Prepare multiple QR codes in one workflow.</p>
+                        </div>
+
+                        <div class="about-card">
+                            <i data-lucide="shield-check"></i>
+                            <h3>Input Validation</h3>
+                            <p>Validate information before processing.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel technology-panel">
+
+                        <h3>Technologies Used</h3>
+
+                        <div class="technology-list">
+                            <span><i data-lucide="code"></i> HTML5</span>
+                            <span><i data-lucide="palette"></i> CSS3</span>
+                            <span><i data-lucide="braces"></i> Vanilla JavaScript</span>
+                            <span><i data-lucide="monitor"></i> Browser APIs</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Application Footer -->
+                <footer class="app-footer">
+                    <p>© 2026 Smart QR Code Generator & Scanner.</p>
+                    <p>Designed with HTML, CSS and JavaScript.</p>
+                </footer>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- QR scanner and QRCodeStyling libraries load before the app modules. -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.2/dist/jszip.min.js"></script>
+
+    <!-- Main JavaScript -->
+    <script type="module" src="./js/app.js"></script>
+
+</body>
+</html>
